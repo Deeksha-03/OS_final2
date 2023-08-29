@@ -33,13 +33,13 @@ void * philosopher(void * num)
     int phil=*(int *)num;
 
     sem_wait(&mutex);
-    printf("\nPhilosopher %d has entered room",phil);
+    printf("\nPhilosopher %d is hungry",phil);
     sem_wait(&chopstick[phil]);
     sem_wait(&chopstick[(phil+1)%5]);
 
     eat(phil);
     sleep(2);
-    printf("\nPhilosopher %d has finished eating",phil);
+    printf("\nPhilosopher %d is thinking",phil);
 
     sem_post(&chopstick[(phil+1)%5]);
     sem_post(&chopstick[phil]);
